@@ -1,60 +1,114 @@
 package com.example.jugeteria
 
+import android.media.RingtoneManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ListView
-import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.example.jugeteria.adaptadores.SuperheroeAdapter
+import com.example.jugeteria.datos.FuenteDeDatos
 
-class MainActivity : AppCompatActivity() {
-    private var personajesDC = ArrayList<Superheroe>()
-    private var personajesMarvel = ArrayList<Superheroe>()
-    private var personajesXmen = ArrayList<Superheroe>()
+class MainActivity : AppCompatActivity(), Dialogo.NotificaDialogo {
     private lateinit var adaptador: SuperheroeAdapter
     private lateinit var listView: ListView
+    val personajesDC = FuenteDeDatos().getPersonajesDC()
+    val personajesMarvel = FuenteDeDatos().getPersonajesMarvel()
+    val personajesXmen = FuenteDeDatos().getPersonajesXmen()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         listView = findViewById(R.id.listView)
-
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Batman", 599.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Superman", 499.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Joker", 399.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Harley Quin", 299.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Robin", 199.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Pinguino", 99.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Harley Quin", 299.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Robin", 199.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesDC.add(Superheroe(R.mipmap.ic_launcher, "DC", "Pinguino", 99.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-
-        personajesMarvel.add(Superheroe(R.mipmap.ic_launcher, "Marvel", "Spiderman", 599.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesMarvel.add(Superheroe(R.mipmap.ic_launcher, "Marvel", "Ironman", 499.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesMarvel.add(Superheroe(R.mipmap.ic_launcher, "Marvel", "Black widow", 399.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesMarvel.add(Superheroe(R.mipmap.ic_launcher, "Marvel", "Thanos", 299.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesMarvel.add(Superheroe(R.mipmap.ic_launcher, "Marvel", "Capitan america", 199.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesMarvel.add(Superheroe(R.mipmap.ic_launcher, "Marvel", "Capitana marvel", 99.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-
-        personajesXmen.add(Superheroe(R.mipmap.ic_launcher, "Xmen", "Wolverine", 599.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesXmen.add(Superheroe(R.mipmap.ic_launcher, "Xmen", "Ciclope", 499.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesXmen.add(Superheroe(R.mipmap.ic_launcher, "Xmen", "Mystique", 399.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesXmen.add(Superheroe(R.mipmap.ic_launcher, "Xmen", "Magneto", 299.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesXmen.add(Superheroe(R.mipmap.ic_launcher, "Xmen", "Tormenta", 199.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-        personajesXmen.add(Superheroe(R.mipmap.ic_launcher, "Xmen", "Profesor X", 99.99, "Lorem ipsum dolor sit amet consectetur adipiscing elit nibh sociis, potenti auctor venenatis aliquam fermentum platea ad torquent, massa dui sed ante posuere eget tellus nullam."))
-
-        adaptador = SuperheroeAdapter(this, personajesDC)
-        listView.adapter = adaptador
+        iniciarLista(personajesDC)
     }
 
-    override fun onStart() {
-        super.onStart()
-        listView.onItemClickListener = object: AdapterView.OnItemClickListener{
-            override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                Toast.makeText(applicationContext, "Escojiste: ${personajesDC[p2].nombre}", Toast.LENGTH_LONG).show()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.principal, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.dc -> {
+                iniciarLista(personajesDC)
+                item.isChecked = true
+                return true
             }
+            R.id.marvel -> {
+                iniciarLista(personajesMarvel)
+                item.isChecked = true
+                return true
+            }
+            R.id.xmen -> {
+                iniciarLista(personajesXmen)
+                item.isChecked = true
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun iniciarLista(lista: ArrayList<Personaje>) {
+        adaptador = SuperheroeAdapter(this, lista)
+        listView.adapter = adaptador
+        listView.setOnItemClickListener { adapterView, view, i, l ->
+            val personaje = adapterView.getItemAtPosition(i)
+            val dp: Dialogo.DialogoPersonalizado = Dialogo.DialogoPersonalizado(this, lista[i])
+            dp.show(supportFragmentManager, null)
+        }
+    }
+
+    override fun onDialogoPositivoClick(entrada: String, personaje: Personaje) {
+            if (entrada.isNotBlank()){
+                enviarNotificacion(entrada, personaje)
+            }
+    }
+
+    private fun enviarNotificacion(nombre: String?, personaje: Personaje) {
+        val CHANNEL_ID = "com.example.jugeteria"
+        val NOTIFICATION_ID = 1
+        // Contenido de la notificación
+        val titulo = "Se realizó su compra"
+        val texto = "$nombre usted compró: ${personaje.nombre} figura de acción"
+        val uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
+            .setSmallIcon(android.R.drawable.sym_def_app_icon)
+            .setContentTitle(titulo)
+            .setContentText(texto)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setSound(uri)
+            .setAutoCancel(true)
+        // Mostrar la notificacion
+        with(NotificationManagerCompat.from(this)) {
+            notify(NOTIFICATION_ID, builder.build())
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

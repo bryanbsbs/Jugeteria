@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Jugeteria</string>
     <string name="imagen">imagen</string>
+    <string name="ingresa_tu_nombre">Ingresa tu nombre</string>
+    <string name="dc">DC</string>
+    <string name="marvel">Marvel</string>
+    <string name="xmen">Xmen</string>
 </resources>

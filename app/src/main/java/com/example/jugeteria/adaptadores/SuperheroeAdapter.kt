@@ -8,17 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.jugeteria.R
-import com.example.jugeteria.Superheroe
+import com.example.jugeteria.Personaje
 
-class SuperheroeAdapter : BaseAdapter {
-
-    var contexto: Context? = null
-    var listaDeSuperheroes = ArrayList<Superheroe>()
-
-    constructor(contexto: Context, lista: ArrayList<Superheroe>): super() {
-        this.contexto = contexto
-        this.listaDeSuperheroes = lista
-    }
+class SuperheroeAdapter(var contexto: Context, var lista: ArrayList<Personaje>) : BaseAdapter() {
 
     //Este metodo genera una vista a partir de los datos de la lista de datos, inflando los
     //componentes
@@ -32,7 +24,7 @@ class SuperheroeAdapter : BaseAdapter {
         } else {
             holder = view.tag as ItemHolder
         }
-        val superheroe = listaDeSuperheroes[p0]
+        val superheroe = lista[p0]
         holder.imagen.setImageResource(superheroe.imagen)
         holder.categoria.text = superheroe.categoria
         holder.nombre.text = superheroe.nombre
@@ -42,11 +34,11 @@ class SuperheroeAdapter : BaseAdapter {
     }
 
     override fun getCount(): Int {
-        return listaDeSuperheroes.size
+        return lista.size
     }
 
     override fun getItem(position: Int): Any {
-        return listaDeSuperheroes[position]
+        return lista[position]
     }
 
     override fun getItemId(position: Int): Long {

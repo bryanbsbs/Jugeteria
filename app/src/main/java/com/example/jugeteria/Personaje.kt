@@ -1,6 +1,6 @@
 package com.example.jugeteria
 
-data class Superheroe(
+data class Personaje(
     val imagen: Int,
     val categoria: String,
     val nombre: String,
