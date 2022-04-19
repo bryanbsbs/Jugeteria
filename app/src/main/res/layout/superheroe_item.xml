@@ -1,58 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="12dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_margin="4dp"
+    android:foreground="?attr/selectableItemBackground"
+    card_view:cardBackgroundColor="#30393E"
+    card_view:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
 
-    <ImageView
-        android:layout_width="86dp"
-        android:layout_height="86dp"
-        android:contentDescription="@string/imagen"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_margin="12dp"
-        tools:src="@mipmap/ic_launcher"
-        android:id="@+id/imgSuperheroe"/>
-
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="Categoria"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/imgSuperheroe"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
-        android:id="@+id/txvCategoria"/>
+        android:paddingBottom="12dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Nombre del superheroe"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@id/imgSuperheroe"
-        app:layout_constraintTop_toBottomOf="@id/txvCategoria"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="12dp"
-        android:id="@+id/txvNombre"/>
+        <ImageView
+            android:id="@+id/imgSuperheroe"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_margin="12dp"
+            android:contentDescription="@string/imagen"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/ic_launcher" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Precio"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toRightOf="@id/imgSuperheroe"
-        app:layout_constraintTop_toBottomOf="@id/txvNombre"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="12dp"
-        android:id="@+id/txvPrecio"/>
+        <TextView
+            android:id="@+id/txvCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/imgSuperheroe"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Categoria" />
+
+        <TextView
+            android:id="@+id/txvNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toRightOf="@id/imgSuperheroe"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txvCategoria"
+            tools:text="Nombre del superheroe" />
+
+        <TextView
+            android:id="@+id/txvPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toRightOf="@id/imgSuperheroe"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txvNombre"
+            tools:text="Precio" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

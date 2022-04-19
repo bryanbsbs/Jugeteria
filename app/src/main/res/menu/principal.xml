@@ -8,6 +8,7 @@
     <item android:id="@+id/dc"
         android:title="@string/dc"
         android:orderInCategory="1"
+        android:checked="true"
         app:showAsAction="never">
     </item>
 

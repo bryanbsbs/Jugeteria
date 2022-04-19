@@ -33,7 +33,7 @@ class Dialogo {
                 val descripcion = dialogo?.findViewById<TextView>(R.id.txvDescripcion)
                 descripcion?.text = personaje.descripcion
 
-                setPositiveButton("Aceptar") { dialog, _ ->
+                setPositiveButton("Comprar") { dialog, _ ->
                     val editText = dialogo?.findViewById<EditText>(R.id.edtNombre)
                     val nombre: String = editText?.text.toString()
                     if (nombre.isNotEmpty()) {

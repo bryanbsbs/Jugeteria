@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity(), Dialogo.NotificaDialogo {
         adaptador = SuperheroeAdapter(this, lista)
         listView.adapter = adaptador
         listView.setOnItemClickListener { adapterView, view, i, l ->
-            val personaje = adapterView.getItemAtPosition(i)
             val dp: Dialogo.DialogoPersonalizado = Dialogo.DialogoPersonalizado(this, lista[i])
             dp.show(supportFragmentManager, null)
         }
@@ -69,6 +68,7 @@ class MainActivity : AppCompatActivity(), Dialogo.NotificaDialogo {
     }
 
     private fun enviarNotificacion(nombre: String?, personaje: Personaje) {
+        val miBitmap = personaje.imagen.createBitmap(this)
         val CHANNEL_ID = "com.example.jugeteria"
         val NOTIFICATION_ID = 1
         // Contenido de la notificación
@@ -77,9 +77,14 @@ class MainActivity : AppCompatActivity(), Dialogo.NotificaDialogo {
         val uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setSmallIcon(android.R.drawable.sym_def_app_icon)
+            .setLargeIcon(miBitmap)
             .setContentTitle(titulo)
             .setContentText(texto)
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setStyle(
+                NotificationCompat.BigPictureStyle()
+                    .bigPicture(miBitmap)
+            )
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setSound(uri)
             .setAutoCancel(true)
         // Mostrar la notificacion
@@ -87,6 +92,8 @@ class MainActivity : AppCompatActivity(), Dialogo.NotificaDialogo {
             notify(NOTIFICATION_ID, builder.build())
         }
     }
+
+
 }
 
 
